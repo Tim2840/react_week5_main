@@ -1,8 +1,7 @@
+import { RouterProvider } from "react-router-dom";
+import { createRouter } from "./router";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Swal from "sweetalert2";
-import LoginPage from "./components/LoginPage";
-import AdminLayout from "./components/AdminLayout";
 
 const API_BASE = import.meta.env.VITE_API_BASE;
 
@@ -15,12 +14,8 @@ function App() {
       await axios.post(`${API_BASE}/api/user/check`);
       setIsAuth(true);
     } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "驗證失敗!",
-        text: `請重新登入!${error.response?.data?.message || ""}`,
-      });
       setIsAuth(false);
+      console.error("驗證失敗", error);
     } finally {
       setIsAuthLoading(false);
     }
@@ -32,7 +27,7 @@ function App() {
       .split("; ")
       .find((row) => row.startsWith("hexToken="))
       ?.split("=")[1];
-    
+
     if (token) {
       axios.defaults.headers.common["Authorization"] = token;
       checkLogin();
@@ -43,26 +38,18 @@ function App() {
 
   if (isAuthLoading) {
     return (
-      <div className="container">
-        <div className="d-flex justify-content-center align-items-center flex-column vh-100">
-          <div className="spinner-border text-primary" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-          <div>頁面重載中，請稍候...</div>
+      <div className="d-flex justify-content-center align-items-center vh-100">
+        <div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden">Loading...</span>
         </div>
       </div>
     );
   }
 
-  return (
-    <>
-      {isAuth ? (
-        <AdminLayout setIsAuth={setIsAuth} />
-      ) : (
-        <LoginPage setIsAuth={setIsAuth} />
-      )}
-    </>
-  );
+  // 根據當前驗證狀態建立路由實例
+  const router = createRouter(isAuth, setIsAuth);
+
+  return <RouterProvider router={router} />;
 }
 
 export default App;
