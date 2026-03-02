@@ -1,11 +1,11 @@
 import { createHashRouter, Navigate } from "react-router-dom";
 import FrontendLayout from "./layout/FrontendLayout";
-import Home from "./views/front/Home";
-import Products from "./views/front/Products";
-import SingleProduct from "./views/front/SingleProduct";
-import Cart from "./views/front/Cart";
-import NotFound from "./views/NotFound";
-import LoginPage from "./views/admin/LoginPage";
+import Home from "./pages/front/Home";
+import Products from "./pages/front/Products";
+import SingleProduct from "./pages/front/SingleProduct";
+import Cart from "./pages/front/Cart";
+import NotFound from "./pages/NotFound";
+import LoginPage from "./pages/admin/LoginPage";
 import AdminLayout from "./layout/AdminLayout";
 
 // 簡單的路由保護組件
