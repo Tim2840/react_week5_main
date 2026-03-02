@@ -1,9 +1,9 @@
 import { createHashRouter, Navigate } from "react-router-dom";
 import FrontendLayout from "./layout/FrontendLayout";
-import Home from "./pages/front/Home";
-import Products from "./pages/front/Products";
-import SingleProduct from "./pages/front/SingleProduct";
-import Cart from "./pages/front/Cart";
+import Home from "./pages/frontend/Home";
+import Products from "./pages/frontend/Products";
+import SingleProduct from "./pages/frontend/SingleProduct";
+import Cart from "./pages/frontend/Cart";
 import NotFound from "./pages/NotFound";
 import LoginPage from "./pages/admin/LoginPage";
 import AdminLayout from "./layout/AdminLayout";
