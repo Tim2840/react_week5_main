@@ -7,16 +7,22 @@ const API_PATH = import.meta.env.VITE_API_PATH;
 
 const SingleProduct = () => {
   const [product, setProduct] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProduct = async () => {
+      setIsLoading(true);
       try {
-        const res = await axios.get(`${API_BASE}/api/${API_PATH}/product/${id}`);
+        const res = await axios.get(
+          `${API_BASE}/api/${API_PATH}/product/${id}`,
+        );
         setProduct(res.data.product);
       } catch (error) {
         console.error("取得產品細節失敗", error);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchProduct();
@@ -24,23 +30,54 @@ const SingleProduct = () => {
 
   return (
     <div className="container mt-5">
-      <button className="btn btn-outline-secondary mb-4" onClick={() => navigate(-1)}>
+      <button
+        className="btn btn-outline-secondary mb-4"
+        onClick={() => navigate(-1)}
+      >
         回產品列表
       </button>
-      <div className="row">
-        <div className="col-md-6">
-          <img src={product.imageUrl} alt={product.title} className="img-fluid rounded shadow-sm" />
+      {isLoading ? (
+        <div className="row placeholder-glow">
+          <div className="col-md-6">
+            <div
+              className="placeholder rounded shadow-sm w-100"
+              style={{ height: "400px" }}
+            ></div>
+          </div>
+          <div className="col-md-6">
+            <h2 className="placeholder col-8 mb-3"></h2>
+            <div className="mb-3">
+              <span className="placeholder col-2 badge"></span>
+            </div>
+            <p className="placeholder col-12 mb-1"></p>
+            <p className="placeholder col-12 mb-1"></p>
+            <p className="placeholder col-10 mb-4"></p>
+            <div className="h3 mb-4">
+              <span className="placeholder col-4 text-primary"></span>
+            </div>
+            <button className="btn btn-primary btn-lg rounded-pill px-5 disabled placeholder col-6"></button>
+          </div>
         </div>
-        <div className="col-md-6">
-          <h2 className="fw-bold mb-3">{product.title}</h2>
-          <span className="badge bg-primary mb-3">{product.category}</span>
-          <p className="text-muted mb-4">{product.content}</p>
-          <div className="h3 text-primary mb-4">NT$ {product.price}</div>
-          <button className="btn btn-primary btn-lg rounded-pill px-5">
-            加入購物車
-          </button>
+      ) : (
+        <div className="row">
+          <div className="col-md-6">
+            <img
+              src={product.imageUrl}
+              alt={product.title}
+              className="img-fluid rounded shadow-sm"
+            />
+          </div>
+          <div className="col-md-6">
+            <h2 className="fw-bold mb-3">{product.title}</h2>
+            <span className="badge bg-primary mb-3">{product.category}</span>
+            <p className="text-muted mb-4">{product.content}</p>
+            <div className="h3 text-primary mb-4">NT$ {product.price}</div>
+            <button className="btn btn-primary btn-lg rounded-pill px-5">
+              加入購物車
+            </button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
