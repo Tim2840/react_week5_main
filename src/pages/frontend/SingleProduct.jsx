@@ -37,25 +37,46 @@ const SingleProduct = () => {
         回產品列表
       </button>
       {isLoading ? (
-        <div className="row placeholder-glow">
+        <div className="row">
           <div className="col-md-6">
             <div
-              className="placeholder rounded shadow-sm w-100"
+              className="skeleton-shimmer rounded shadow-sm w-100"
               style={{ height: "400px" }}
             ></div>
           </div>
           <div className="col-md-6">
-            <h2 className="placeholder col-8 mb-3"></h2>
+            <div
+              className="skeleton-shimmer w-75 mb-3"
+              style={{ height: "2.5rem" }}
+            ></div>
             <div className="mb-3">
-              <span className="placeholder col-2 badge"></span>
+              <div
+                className="skeleton-shimmer w-25"
+                style={{ height: "1.5rem" }}
+              ></div>
             </div>
-            <p className="placeholder col-12 mb-1"></p>
-            <p className="placeholder col-12 mb-1"></p>
-            <p className="placeholder col-10 mb-4"></p>
+            <div
+              className="skeleton-shimmer w-100 mb-2"
+              style={{ height: "1rem" }}
+            ></div>
+            <div
+              className="skeleton-shimmer w-100 mb-2"
+              style={{ height: "1rem" }}
+            ></div>
+            <div
+              className="skeleton-shimmer w-50 mb-4"
+              style={{ height: "1rem" }}
+            ></div>
             <div className="h3 mb-4">
-              <span className="placeholder col-4 text-primary"></span>
+              <div
+                className="skeleton-shimmer w-50"
+                style={{ height: "2rem" }}
+              ></div>
             </div>
-            <button className="btn btn-primary btn-lg rounded-pill px-5 disabled placeholder col-6"></button>
+            <div
+              className="skeleton-shimmer w-50 rounded-pill"
+              style={{ height: "3rem" }}
+            ></div>
           </div>
         </div>
       ) : (

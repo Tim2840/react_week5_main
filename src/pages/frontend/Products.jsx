@@ -29,21 +29,36 @@ const Products = () => {
       <h1 className="mb-4">產品列表</h1>
       <div className="row row-cols-1 row-cols-md-3 g-4">
         {isLoading
-          ? // 顯示 6 個 Skeleton 卡片
+          ? // 顯示 6 個高品質 Shimmer 卡片
             Array.from({ length: 6 }).map((_, index) => (
               <div className="col" key={index}>
-                <div className="card h-100 shadow-sm border-0 placeholder-glow">
+                <div className="card h-100 shadow-sm border-0">
                   <div
-                    className="placeholder card-img-top"
+                    className="skeleton-shimmer card-img-top"
                     style={{ height: "200px" }}
                   ></div>
                   <div className="card-body">
-                    <h5 className="card-title placeholder col-8"></h5>
-                    <p className="card-text placeholder col-12 mb-1"></p>
-                    <p className="card-text placeholder col-10 mb-3"></p>
+                    <div
+                      className="skeleton-shimmer w-75 mb-3"
+                      style={{ height: "1.25rem" }}
+                    ></div>
+                    <div
+                      className="skeleton-shimmer w-100 mb-1"
+                      style={{ height: "1rem" }}
+                    ></div>
+                    <div
+                      className="skeleton-shimmer w-50 mb-3"
+                      style={{ height: "1rem" }}
+                    ></div>
                     <div className="d-flex justify-content-between align-items-center">
-                      <span className="placeholder col-4 text-primary"></span>
-                      <span className="placeholder col-3 btn btn-sm rounded-pill"></span>
+                      <div
+                        className="skeleton-shimmer w-25"
+                        style={{ height: "1.5rem" }}
+                      ></div>
+                      <div
+                        className="skeleton-shimmer w-25 rounded-pill"
+                        style={{ height: "2rem" }}
+                      ></div>
                     </div>
                   </div>
                 </div>
