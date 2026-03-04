@@ -29,7 +29,7 @@ const Products = () => {
       <h1 className="mb-4">產品列表</h1>
       <div className="row row-cols-1 row-cols-md-3 g-4">
         {isLoading
-          ? // 顯示 6 個高品質 Shimmer 卡片
+          ? // 顯示 6 個 Shimmer 卡片
             Array.from({ length: 6 }).map((_, index) => (
               <div className="col" key={index}>
                 <div className="card h-100 shadow-sm border-0">
